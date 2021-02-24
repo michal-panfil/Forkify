@@ -1,21 +1,17 @@
 import View from './View.js';
 import icons from '../../img/icons.svg';
 
-class ResultsView extends View{
-parentElement = document.querySelector('.results');
-errMsg = 'No recipes find for you query';
+class ResultsView extends View {
+    parentElement = document.querySelector('.results');
+    errMsg = 'No recipes find for you query';
 
 
-generateMarkup(){
-    console.log(this.data);
-    return this.data.map( this.generatePreview).join('');
-   
-    
-  
-}
-generatePreview(item){
+    generateMarkup() {
+        return this.data.map(this.generatePreview).join('');
+    }
+    generatePreview(item) {
 
-    return `
+        return `
     <li class="preview">
         <a class="preview__link "preview__link--active"" href="#${item.id}">
         <figure class="preview__fig">
@@ -29,7 +25,7 @@ generatePreview(item){
         </a>
     </li>
     `;
-}
+    }
 }
 
 export default new ResultsView();
