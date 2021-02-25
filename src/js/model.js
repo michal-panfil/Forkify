@@ -43,16 +43,23 @@ export const loadSearchResult = async function(query) {
                 image: rec.image_url,
             }
         })
+        state.page =1;
 
     } catch (err) {
         throw err;
     }
 }
 
-export const getSearchResultPage = function(page = 1) {
+export const getSearchResultPage = function(page = state.search.page) {
     state.page = page;
 
     const start = (page - 1) * state.resultsPerPage;
     const end = page * state.resultsPerPage;
     return state.search.results.slice(start, end);
+}
+export function updateServings(newServings){
+ state.recipe.ingredients.forEach(ing =>{
+     ing.quantity = (ing.quantity * newServings) / state.recipe.serving;
+ });
+ state.recipe.serving = newServings;
 }
